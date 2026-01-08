@@ -56,7 +56,11 @@
       white-space: nowrap;
     }
 
-    .zodiac-btn i { font-size: 16px; }
+    .zodiac-btn img {
+      width: 16px;
+      height: 16px;
+      margin-right: 4px;
+    }
 
     .zodiac-label {
       max-width: 0;
@@ -102,16 +106,6 @@
     }
   `;
   document.head.appendChild(style);
-
-const href =
-  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css";
-
-if (!document.querySelector(`link[href="${href}"]`)) {
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = href;
-  document.head.appendChild(link);
-}
 
   const Scripts = {
     GLOBAL: [
@@ -220,21 +214,21 @@ if (!document.querySelector(`link[href="${href}"]`)) {
     ]
   };
 
-  const categories = {
-    "GLOBAL": "fa-globe",
-    "Gold Quest": "fa-coins",
-    "Crypto Hack": "fa-bitcoin-sign",
-    "Fishing Frenzy": "fa-fish",
-    "Tower Defense": "fa-tower-observation",
-    "Tower Defense 2": "fa-chess",
-    "Monster Brawl": "fa-dragon",
-    "Deceptive Dinos": "fa-paw",
-    "Battle Royale": "fa-crosshairs",
-    "Cafe": "fa-mug-hot",
-    "Factory": "fa-industry",
-    "Racing": "fa-flag-checkered",
-    "Blook Rush": "fa-bolt",
-    "Santa's Workshop": "fa-gift"
+  const categoryIcons = {
+    "GLOBAL": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892522/etrinzbnfhvqf4zknane.svg",
+    "Gold Quest": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892556/h2jxx7cu6i0m4cqs5frq.svg",
+    "Crypto Hack": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892582/jcmgrb1t1wpd3d52e9cx.svg",
+    "Fishing Frenzy": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892608/qa68b4u9oojzsbavzmlm.svg",
+    "Tower Defense": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892634/gr7lkqusqunstmjkqdy6.svg",
+    "Tower Defense 2": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892664/fzrybocx5ziggforgo3b.svg",
+    "Monster Brawl": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892728/byfhbagnmeh9k08x2fjz.svg",
+    "Deceptive Dinos": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892761/p7q0nctrkwrojimirg3j.svg",
+    "Battle Royale": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767892784/tggeddxxbxkrpqmqdob0.svg",
+    "Cafe": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767893006/j2i2do012cbvuez9wfof.svg",
+    "Factory": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767893039/vlttzqde73bfpvbgby79.svg",
+    "Racing": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767893060/cczarhdhhngk7aflqulc.svg",
+    "Blook Rush": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767893111/pmousz9cti2g0jppnxfw.svg",
+    "Santa's Workshop": "https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767893130/qshkiipmsmzoramr1wqm.svg",
   };
 
   const bar = document.createElement("div");
@@ -243,28 +237,28 @@ if (!document.querySelector(`link[href="${href}"]`)) {
   const brand = document.createElement("div");
   brand.id = "zodiacBrand";
   brand.innerHTML = `
-    <img src="https://zodiac-test-whoopsies.vercel.app/image/logo.gif" width="50" height="50">
+    <img src="https://media.blooket.com/image/upload/c_limit,f_auto,h_250,fl_lossy,q_auto:low/v1767893179/w8cpt6r13lprsclhbxny.gif" width="50" height="50" />
     <div id="zodiacTitle">ZODIAC</div>
   `;
   bar.appendChild(brand);
 
   let openMenu = null;
 
-  Object.entries(categories).forEach(([name, icon]) => {
+  Object.entries(categoryIcons).forEach(([name, pngUrl]) => {
     const wrap = document.createElement("div");
     wrap.className = "zodiac-category";
 
-    const btn = document.createElement("button");
-    btn.className = "zodiac-btn";
-    btn.innerHTML = `
-      <i class="fa-solid ${icon}"></i>
-      <span class="zodiac-label">${name}</span>
-    `;
+  const btn = document.createElement("button");
+  btn.className = "zodiac-btn";
+  btn.innerHTML = `
+  <img src="${pngUrl}" style="filter: invert(1);" />
+  <span class="zodiac-label">${name}</span>
+  `;
 
     const menu = document.createElement("div");
     menu.className = "zodiac-menu";
 
-    Scripts[name].forEach(script => {
+    Scripts[name]?.forEach(script => {
       const item = document.createElement("div");
       item.className = "zodiac-item";
       item.textContent = script.name;
