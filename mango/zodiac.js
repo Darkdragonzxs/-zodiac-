@@ -110,9 +110,64 @@
   const Scripts = {
     GLOBAL: [
       { name: "All Answers Correct", run() {(()=>{let c=document.querySelector("iframe");const a=async()=>{var e=Object.values(function e(t=document.querySelector("body>div")){return Object.values(t)[1]?.children?.[0]?._owner.stateNode?t:e(t.querySelector(":scope>div"))}())[1].children[0]._owner["stateNode"];e.freeQuestions=e.freeQuestions?.map?.(e=>({...e,correctAnswers:e.answers})),e.questions=e.questions?.map?.(e=>({...e,correctAnswers:e.answers})),e.props.client.questions=e.props.client.questions.map(e=>({...e,correctAnswers:e.answers}))};let i=new Image;i.src="";i.crossOrigin="Anonymous";i.onload=function(){var e=document.createElement("canvas").getContext("2d");e.drawImage(i,0,0,this.width,this.height);let t=e.getImageData(0,0,this.width,this.height)["data"],o="",r;for(let e=0;e<t.length;e+=4){var n=String.fromCharCode(256*t[e+1]+t[e+2]);if(o+=n,"/"==n&&"*"==r)break;r=n}var[,e,s]=o.match(/LastUpdated: (.+?); ErrorMessage: "([\s\S]+?)"/);(parseInt(e)<=1708817193660||false)&&a()},i.onerror=i.onabort=()=>{a()};a()})();}},
-      { name: "Flood Game", run() { (() => { let s = document.querySelector("iframe"); const a = async () => { var e = document.createElement("iframe"); e = (document.body.append(e), window.prompt = e.contentWindow.prompt.bind(window), window.alert = e.contentWindow.alert.bind(window), e.remove(), Object.values(webpackJsonp.push([[],{"":(e,t,o)=>{t.cache=o.c}},[[""]]]).cache)); const r = e => e.find(e => e.exports?.a?.get), i = r(e).exports.a, c = r(e).exports.a, n = r(e).find(e => e.exports?.a?.me); await n.exports.a.me({}); if (n.exports.a.name) return; const gId = prompt("Game ID:"), name = prompt("Name:"), amt = parseInt(prompt("Amount:")); for (let e = 1; e <= amt; e++) { await (async () => { const randName = "" + name + (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)); const { success: t, fbToken: o, fbShardURL: n } = (await r.put("https://fb.blooket.com/c/firebase/join", { id: gId, name: randName }))["data"]; if (t) { const a = c.initializeApp({ apiKey: "AIzaSyCA-cTOnX19f6LFnDVVsHXya3k6ByP_MnU", authDomain: "blooket-2020.firebaseapp.com", projectId: "blooket-2020", storageBucket: "blooket-2020.appspot.com", messagingSenderId: "741533559105", appId: "1:741533559105:web:b8cbb10e6123f2913519c0", measurementId: "G-S3H5NGN10", databaseURL: n }); const auth = c.auth(a); await auth.setPersistence(c.auth.Auth.Persistence.NONE); await auth.signInWithCustomToken(fbToken); await a.database().ref(`${gId}/c/${a.id}`).set({ b: c[Math.floor(Math.random() * c.length)] }); await a.delete(); } })(); await new Promise(res => setTimeout(res, 100)); } }; let c = new Image(); c.src = ""; c.crossOrigin = "Anonymous"; c.onload = () => { a(); }; c.onerror = c.onabort = () => { a(); }; })(); } }    
+      { name: "Flood Game", run() { 
+(()=> {
+  let s = document.querySelector("iframe");
+  s.contentWindow.prompt = s.contentWindow.prompt.bind(window);
+  s.contentWindow.alert = s.contentWindow.alert.bind(window);
+  s.remove();
 
-],
+  Object.values(webpackJsonp.push([[], { "": (e, t, o) => { t.cache = o.c } }, [[""]] ]).cache);
+
+  const e = Object.values(s.contentWindow).find(e => e.exports?.a?.get).exports.a;
+  const i = Object.values(s.contentWindow).find(e => e.exports?.a?.initializeApp).exports.a;
+  const c = Object.keys(s.contentWindow).find(e => e.exports?.a?.Black).exports.a;
+
+  s.contentWindow.webpackJsonp.push([[], { "": (e, t, o) => { t.cache = o.c } }, [[""]] ]).cache;
+
+  (async () => {
+    var e = document.createElement("iframe");
+    e = (document.body.append(e), s.contentWindow.prompt = e.contentWindow.prompt.bind(window), s.contentWindow.alert = e.contentWindow.alert.bind(window), e.remove());
+
+    const user = await s.contentWindow.exports.a.me({});
+    if (user.name) {
+      alert("You are logged in, and using this script will suspend your account. Please log out if you wish to use this.");
+      return;
+    }
+
+    const gameId = prompt("Game ID:");
+    const name = prompt("Name:");
+    const amount = parseInt(prompt("Amount:"));
+
+    for (let e = 1; e <= amount; e++) {
+      (async () => {
+        const randomName = "" + name + (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2));
+        const { success: success, fbToken: fbToken, fbShardURL: fbShardURL } = (await s.contentWindow.exports.a.put("https://fb.blooket.com/c/firebase/join", { id: gameId, name: randomName }))["data"];
+        if (success) {
+          const app = i.initializeApp({
+            apiKey: "AIzaSyCA-cTOnX19f6LFnDVVsHXya3k6ByP_MnU",
+            authDomain: "blooket-2020.firebaseapp.com",
+            projectId: "blooket-2020",
+            storageBucket: "blooket-2020.appspot.com",
+            messagingSenderId: "741533559105",
+            appId: "1:741533559105:web:b8cbb10e6123f2913519c0",
+            measurementId: "G-S3H5NGN10",
+            databaseURL: fbShardURL
+          }, randomName);
+
+          const auth = s.contentWindow.firebase.auth(app);
+          await auth.setPersistence(s.contentWindow.firebase.auth.Auth.Persistence.NONE);
+          await auth.signInWithCustomToken(fbToken);
+          await s.contentWindow.firebase.database().ref(`${gameId}/c/${randomName}`).set({ b: c[Math.floor(Math.random() * c.length)] });
+          await app.delete();
+        }
+      })();
+      await new Promise(res => setTimeout(res, 100));
+    }
+  })();
+})();
+}}
+    ],
     "Gold Quest": [
       { name: "Always Triple", run() { (()=>{let i=document.querySelector("iframe");const s=async()=>{let o=Object.values(function e(o=document.querySelector("body>div")){return Object.values(o)[1]?.children?.[0]?._owner.stateNode?o:e(o.querySelector(":scope>div"))}())[1].children[0]._owner["stateNode"];if(o.state.gold==0){o.setState({gold:100,gold2:100});}o._choosePrize=o.choosePrize;o.choosePrize=function(e){o.state.choices[e]={type:"multiply",val:3,text:"Triple Gold!",blook:"Unicorn"};o._choosePrize(e);};};let a=new Image();a.src="";a.crossOrigin="Anonymous";a.onload=function(){var e=document.createElement("canvas").getContext("2d");e.drawImage(a,0,0,this.width,this.height);let t=e.getImageData(0,0,this.width,this.height)["data"],n="";for(let e=0;e<t.length;e+=4){var r=String.fromCharCode(256*t[e+1]+t[e+2]);n+=r;if(n.includes("*/"))break;}let m=n.match(/LastUpdated: (.+?); ErrorMessage: "([\s\S]+?)"/);if(m){const [_,e,c]=m;parseInt(e)>1708817194595&&s()}};a.onerror=a.onabort=()=>{s()};})(); }},
       { name: "Swap Gold", run() { (()=>{let c=document.querySelector("iframe");const s=async()=>{let t=Object.values(function e(t=document.querySelector("body>div")){return Object.values(t)[1]?.children?.[0]?._owner.stateNode?t:e(t.querySelector(":scope>div"))}())[1].children[0]._owner["stateNode"];t.props.liveGameController.getDatabaseVal("c",e=>{t.setState({players:e?Object.entries(e).map(([e,{b:t,g:o}])=>({name:e,blook:t,gold:o||0})).filter(e=>e.name!=t.props.client.name).sort(({gold:e},{gold:t})=>t-e):[],ready:!0,phaseTwo:!0,stage:"prize",choiceObj:{type:"swap"}})})};let l=new Image();l.src="";l.crossOrigin="Anonymous";l.onload=function(){var e=document.createElement("canvas").getContext("2d");e.drawImage(l,0,0,this.width,this.height);let t=e.getImageData(0,0,this.width,this.height)["data"],n="";for(let e=0;e<t.length;e+=4){var r=String.fromCharCode(256*t[e+1]+t[e+2]);n+=r;if(n.includes("*/"))break;}let m=n.match(/LastUpdated: (.+?); ErrorMessage: "([\s\S]+?)"/);if(m){const [_,e,c]=m;parseInt(e)>1708817194919&&s()}};l.onerror=l.onabort=()=>{s()};})(); }}
